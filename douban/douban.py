@@ -9,17 +9,12 @@ from multiprocessing import Pool
 
 
 
-
-
-
 class Doubanmovies(object):
     def __init__(self):
         self.baseurl = 'https://movie.douban.com/top250?'
         self.client = pymongo.MongoClient(MONGO_URI)
         self.db = self.client[MONGO_DB]
         self.table = MONGO_TABLE
-
-
 
 
     def get_index_page(self,num):
@@ -36,10 +31,12 @@ class Doubanmovies(object):
             print('请求标签页出错')
             return None
 
+
     def parse_index_page(self,text):
         pattern = re.compile('<div class="hd">.*?<a href="(.*?)"',re.S)
         detail_urls = re.findall(pattern,text)
         return detail_urls
+
 
     def get_detail_page(self,url):
         try:
@@ -91,12 +88,7 @@ class Doubanmovies(object):
 
 
 
-
-
-
-
 spider = Doubanmovies()
-
 spider.start()
 
 
