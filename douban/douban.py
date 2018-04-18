@@ -8,6 +8,7 @@ from config import *
 from multiprocessing import Pool
 
 
+
 class Doubanmovies(object):
     def __init__(self):
         self.baseurl = 'https://movie.douban.com/top250?'
